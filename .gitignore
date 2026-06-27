@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local env (holds no secret here, but keep the habit)
+.env
+
+# Editor / local history
+.history/
+.vscode/
+
+# Output written by the capstone / examples
+out/
