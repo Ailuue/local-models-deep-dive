@@ -78,7 +78,7 @@ def tool_calling():
         resp = providers.client().chat.completions.create(
             model=providers.CHAT_MODEL,
             messages=[{"role": "user", "content": "What's the weather in Oslo right now?"}],
-            tools=tools,
+            tools=tools,  # type: ignore[arg-type]
             temperature=0,
         )
     except Exception as exc:
