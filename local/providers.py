@@ -158,7 +158,7 @@ def chat(messages: list[dict], model: str | None = None, **kwargs) -> str:
     """
     model = model or CHAT_MODEL
     try:
-        resp = client().chat.completions.create(model=model, messages=messages, **kwargs)
+        resp = client().chat.completions.create(model=model, messages=messages, **kwargs)  # type: ignore[arg-type]
     except Exception as exc:  # model not pulled, bad request, etc.
         from openai import APIConnectionError
 
@@ -179,8 +179,8 @@ def stream(messages: list[dict], model: str | None = None, **kwargs):
     *prompt processing* (section 6), not the network.
     """
     model = model or CHAT_MODEL
-    stream_resp = client().chat.completions.create(
-        model=model, messages=messages, stream=True, **kwargs
+    stream_resp = client().chat.completions.create(  # type: ignore[call-overload]
+        model=model, messages=messages, stream=True, **kwargs  # type: ignore[arg-type]
     )
     for chunk in stream_resp:
         delta = chunk.choices[0].delta.content
